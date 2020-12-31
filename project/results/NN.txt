@@ -1,0 +1,2 @@
+dtw 200 train 100 validation 83%
+ed  200 train 100 validation 75%
