@@ -1,0 +1,18 @@
+network https://towardsdatascience.com/a-simple-2d-cnn-for-mnist-digit-recognition-a998dbc1e79a
+intro https://becominghuman.ai/introduction-to-artificial-intelligence-5fba0148ec99
+latex https://www.overleaf.com/learn/latex
+data norm https://medium.com/@urvashilluniya/why-data-normalization-is-necessary-for-machine-learning-models-681b65a05029
+data norm 2 https://towardsdatascience.com/understand-data-normalization-in-machine-learning-8ff3062101f0
+knn https://medium.com/datadriveninvestor/k-nearest-neighbors-knn-7b4bd0128da7
+knn 2 https://medium.com/@srishtisawla/k-nearest-neighbors-f77f6ee6b7f5
+dtw https://medium.com/datadriveninvestor/dynamic-time-warping-dtw-d51d1a1e4afc
+dtw 2 https://towardsdatascience.com/dynamic-time-warping-3933f25fcdd
+ANN https://medium.com/@purnasaigudikandula/a-beginner-intro-to-neural-networks-543267bda3c8
+softmax https://mathanrajsharma.medium.com/softmax-activation-function-e582ea53ada7
+layers https://medium.com/fintechexplained/neural-network-layers-75e48d71f392
+cce https://gombru.github.io/2018/05/23/cross_entropy_loss/
+dense https://medium.com/datathings/dense-layers-explained-in-a-simple-way-62fe1db0ed75
+max pool 2d https://medium.com/@brightonnkomo/convolutional-neural-networks-part-4-the-pooling-and-fully-connected-layer-394ec01fb00d
+conv 2d https://xzz201920.medium.com/conv1d-conv2d-and-conv3d-8a59182c4d6
+dropout https://medium.com/@amarbudhiraja/https-medium-com-amarbudhiraja-learning-less-to-learn-better-dropout-in-deep-machine-learning-74334da4bfc5
+flatten https://towardsdatascience.com/the-most-intuitive-and-easiest-guide-for-convolutional-neural-network-3607be47480
