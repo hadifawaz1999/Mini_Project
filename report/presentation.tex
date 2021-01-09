@@ -479,7 +479,106 @@ $ C $ being the number of classes, $ y $ the target vector (a row from the matri
 
 \begin{frame}
 \frametitle{Neural Networks - Layers}
+We have two categories of layers : hidden and non hidden layers.
+\begin{block}{Non hidden layers :}
+Only two exists :
+\begin{itemize}
+\item Input Layer : It is a must (no parameters involved)
+\item Output Layer : It is a must (Usually with a softmax activation function with a number of units equal to the number of classes in our data set)
+\end{itemize}
+\end{block}
+\begin{block}{Hidden layers :}
+A lot of types exists but we will talk about the ones we used in our project
+\begin{itemize}
+\item \small Dense Layer
+\item \small Max Pooling 2D Layer
+\item \small 2D Convolution Layer (Conv2D)
+\item \small Dropout Layer
+\item \small Flatten Layer
+\end{itemize}
+\end{block}
 
 \end{frame}
 
+\begin{frame}
+\frametitle{Neural Networks - Layers - Dense Layer}
+The dense layer was explained before, it consists of having $ u $ neurons and one activation function $ f $ and its output (lets call it $ y $) is calculated in the following way :\\
+\begin{center}
+$ \vec{y} = f(w^{T}*\vec{x} + \vec{b}) $
+\end{center}
+$ w $ is a $ (n*u) $ matrix where $ n $ is the length of the input vector and $\vec{b} $ is a vector of length $ u $.
+\end{frame}
+
+\begin{frame}
+\frametitle{Neural Networks - Layers - Max Pooling 2D Layer}
+Its goal is just to reduce the size of its input.\\
+\begin{example}
+lets say you have a $ 4x4 $ matrix :\\
+$D = 
+\begin{pmatrix}
+1 & 3 & 2 & 1\\
+2 & 9 & 1 & 1\\
+1 & 3 & 2 & 3\\
+5 & 6 & 1 & 2
+\end{pmatrix}
+$
+Then applying a $ (2,2) $ max pooling on it would produce :
+$D^{\prime} = 
+\begin{pmatrix}
+9 & 2\\
+6 & 3
+\end{pmatrix}
+$  Filter jumping 2 steps vertically and horizontally.
+\end{example}
+\end{frame}
+
+\begin{frame}
+\frametitle{Neural Networks - Layers - 2D Convolution Layer}
+Here the filter jumps 1 step at the time regardless of the its size.\\
+\begin{example}
+Lets consider having the same matrix we used in the previous section about max pooling layer, applying this matrix as $ (2,2) $ filter :\\
+$F = 
+\begin{pmatrix}
+1 & -1\\
+-1 & 1
+\end{pmatrix}
+$
+The first sub matrix the filter sees is : 
+$A = 
+\begin{pmatrix}
+1 & 3\\
+2 & 9
+\end{pmatrix}
+$\\
+So to calculate the after filtering results we compute this :\\
+\begin{center}
+$ B = \sum_{i=1}^{i=2}F_i*A_i $
+\end{center}
+And we keep moving the filter around till we get a new matrix, for the above example the after filtering results would be :\\
+$D^{\prime} = 
+\begin{pmatrix}
+5 & -7 & -1\\
+-5 & -9 & 1\\
+-1 & -4 & 0
+\end{pmatrix}
+$
+\end{example}
+\end{frame}
+
+\begin{frame}
+\frametitle{Neural Networks - Layers - Dropout Layer}
+\begin{figure}
+\centering
+\includegraphics[scale=0.3]{dropout.png}
+\caption{rivastava, Nitish, et al. ”Dropout: a simple way to prevent neural networks from
+overfitting”, JMLR 2014}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Neural Networks - Layers - Flatten Layer}
+\begin{block}{}
+This layer does not have any parameters and it just takes the output of a hidden layer or input layer and transforms its data to a 1 dimensional vector.
+\end{block}
+\end{frame}
 \end{document}
