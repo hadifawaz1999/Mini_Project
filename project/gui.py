@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import random
 import cv2
 from tslearn.metrics import dtw
+import os
+from model import MODEL
 
 
 class GUI:
@@ -119,6 +121,28 @@ class GUI:
         self.predict_by_ed_button['padx'] = 10
         self.predict_by_ed_button['pady'] = 10
 
+        # NN evaluation button
+
+        self.evaluate_by_nn_button = Button(
+            self.gui, text="Evaluate Neural Netowk", command=self.evaluate_by_nn_button_command)
+        self.evaluate_by_nn_button['relief'] = "raised"
+        self.evaluate_by_nn_button['activeforeground'] = "green"
+        self.evaluate_by_nn_button['activebackground'] = "white"
+        self.evaluate_by_nn_button['fg'] = "black"
+        self.evaluate_by_nn_button['padx'] = 10
+        self.evaluate_by_nn_button['pady'] = 10
+
+        # NN test image button
+
+        self.predict_test_image_by_nn_button = Button(
+            self.gui, text="Preict Test Image By Neural Netowk", command=self.predict_test_image_by_nn_button_command)
+        self.predict_test_image_by_nn_button['relief'] = "raised"
+        self.predict_test_image_by_nn_button['activeforeground'] = "green"
+        self.predict_test_image_by_nn_button['activebackground'] = "white"
+        self.predict_test_image_by_nn_button['fg'] = "black"
+        self.predict_test_image_by_nn_button['padx'] = 10
+        self.predict_test_image_by_nn_button['pady'] = 10
+
     def start_loop(self):
         self.gui.mainloop()
 
@@ -149,9 +173,11 @@ class GUI:
 
         self.show_random_button.place(x=200, y=30)
         self.show_all_button.place(x=370, y=30)
-        self.load_test_digit_button.place(x=540, y=30)
+        if os.path.isfile('test.png'):
+            self.load_test_digit_button.place(x=540, y=30)
         self.predict_random_digit_by_dtw_button.place(x=30, y=110)
         self.predict_random_digit_by_ed_button.place(x=30,y=200)
+        self.evaluate_by_nn_button.place(x=30,y=260)
 
     def show_random_button_command(self):
         index = random.randint(a=0, b=int(self.xtrain.shape[0]))
@@ -183,18 +209,15 @@ class GUI:
         plt.show()
 
     def load_test_digit_button_command(self):
-        try:
-
-            self.predict_by_dtw_button.place(x=280, y=110)
-            self.predict_by_ed_button.place(x=280,y=200)
-            img = cv2.imread("test.png", cv2.IMREAD_GRAYSCALE)
-            self.test_digit = np.asarray(img, dtype=np.float64)
-            print("test image: ", self.test_digit.shape)
-            plt.imshow(self.test_digit, cmap="gray")
-            plt.show()
-        except:
-            tkinter.messagebox.showerror(
-                "Error !!!!", "Create test image first")
+    
+        self.predict_by_dtw_button.place(x=280, y=110)
+        self.predict_by_ed_button.place(x=280,y=200)
+        self.predict_test_image_by_nn_button.place(x=300,y=260)
+        img = cv2.imread("test.png", cv2.IMREAD_GRAYSCALE)
+        self.test_digit = np.asarray(img, dtype=np.float64)
+        print("test image: ", self.test_digit.shape)
+        plt.imshow(self.test_digit, cmap="gray")
+        plt.show()
 
     def predict_by_dtw_button_command(self):
         ytrain_copy = self.ytrain.copy()
@@ -309,6 +332,32 @@ class GUI:
             ed_distances.append(np.sqrt(np.sum(np.square(img-chosen[i]))))
         tkinter.messagebox.showinfo(
             "Prediction By ED:", "The test image is predicted as "+str(np.argmin(ed_distances)))
+    
+    def evaluate_by_nn_button_command(self):
+        
+        self.my_model = MODEL(xtrain=self.xtrain,ytrain=self.ytrain,
+                              xtest=self.xtest,ytest=self.ytest,
+                              load_model=True,draw_model=True,
+                              show_summary=True,show_details=True,
+                              save_loss=False,save_accuracy=False,
+                              learning_rate=0.01,batch_size=512,num_epochs=10)
+        
+        my_score = self.my_model.evaluate_score()
+        tkinter.messagebox.showinfo(
+            "Evaluateion By Neural Network:","The score we got by the network is "+str(float(my_score)*100)+"%."
+        )
+
+    def predict_test_image_by_nn_button_command(self):
+        self.my_model = MODEL(xtrain=self.xtrain,ytrain=self.ytrain,
+                              xtest=self.xtest,ytest=self.ytest,
+                              load_model=True,draw_model=True,
+                              show_summary=True,show_details=True,
+                              save_loss=False,save_accuracy=False,
+                              learning_rate=0.01,batch_size=512,num_epochs=10)
+        
+        prediction = self.my_model.predict_test_image(self.test_digit)
+        tkinter.messagebox.showinfo(
+            "Prediction By Neural Network:", "The test image is predicted as "+str(int(prediction)))
 
 if __name__ == "__main__":
     my_gui = GUI()

@@ -2,6 +2,7 @@ import numpy as np
 import keras
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score as score
+import random
 
 
 class MODEL:
@@ -10,7 +11,7 @@ class MODEL:
                  draw_model, show_summary, show_details, save_loss,
                  save_accuracy, learning_rate, batch_size, num_epochs):
 
-        self.results_path = 'results/Adam_b512_e10_lr0.01/'
+        self.results_path = 'results/Adam_b128_e10_lr0.001/'
 
         self.xtrain = xtrain
         self.ytrain = ytrain
@@ -44,7 +45,7 @@ class MODEL:
             self.fit()
 
     def load_my_model(self):
-        self.my_model = keras.models.load_model('my_model.hdf5')
+        self.my_model = keras.models.load_model(self.results_path+'my_model.hdf5')
         if self.show_summary:
             self.my_model.summary()
 
@@ -113,3 +114,9 @@ class MODEL:
         self.ypred = np.argmax(self.ypred, axis=1)
         assert(self.ypred.shape == self.ytest.shape)
         return score(self.ypred,self.ytest)
+        
+    
+    def predict_test_image(self,img):
+        img.shape = (1,28,28,1)
+        prediction = np.argmin(self.my_model.predict(img),axis=1)
+        return prediction
