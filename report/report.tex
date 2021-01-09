@@ -11,7 +11,7 @@
 \usetikzlibrary{shapes,snakes}
 \usepackage{wrapfig}
 \usepackage[hidelinks]{hyperref}
-
+\usepackage{array}
 
 \usepackage[a4paper, total={6.5in, 8in}]{geometry}
 \font\myfont=cmr12 at 30pt
@@ -365,4 +365,70 @@ overfitting”, JMLR 2014
 \end{center}
 \paragraph{6.4.3.5 Flatten Layer :}
 This layer does not have any parameters and it just takes the output of a hidden layer or input layer and transforms its data to a 1 dimensional vector.
+
+\section{Putting It All Together :}
+
+Our project is a simple Graphical User Interface (GUI) created in python using the Tkinter module where the user can choose any of the 3 methods we talked about (NN-ED, NN-DTW, ANN) to test the model's classification. For all of the 3 methods we talked about we gathered some results, for the nearest neighbor algorithm (using ED and DTW) we did only one trial with only 200 samples of the train set and 100 samples of the test set because nearest neighbor with ED is a O(n) algorithm and DTW is a O(n*m) algorithm so with 60,000 train samples and 1000 test samples it would take a lot of time for the algorithm to finish even with the optimized functions that we used from Tslearn and Sklearn modules that we used to evaluate the algorithms. For the neural networks we implemented our model using the Keras module with 9 different approaches so we can compare the results and choose the best model, because the number of hyper parameters that a neural network has is very large so we had 3 different optimizers : SGD, Adam and Adadelta, 2 different learning rates : 0.01 and 0.001 and 2 different batch sizes : 128 and 512 but with a fixed number of epochs equal to 10.\\\\
+Note : For the neural network method we used the whole data set.\\
+Our Neural Network has the following architecture :\\
+\begin{itemize}
+\item Layer 1 : Input layer
+\item Layer 2 : Conv2D layer, number of filters is 32 and kernel size is (3,3)
+\item Layer 3 : Conv2D layer, number of filters is 64 and kernel size is (3,3)
+\item Layer 4 : MaxPool2D layer, pool size is (2,2)
+\item Layer 5 : Dropout layer, with a keep probability of 25\%
+\item Layer 6 : Flatten layer
+\item Layer 7 : Dense layer, number of units is 128 with a relu activation function
+\item Layer 8 : Dropout layer, with a keep probability of 50\%
+\item Layer 9 : Output Dense layer, number of units is 10 given the number of digits we have with a softmax activation function
+\end{itemize}
+
+\section{Results :}
+Here is a table of the results we got for the Neural Networks method :\\\\
+
+\begin{center}
+\begin{tabular}{|p{3cm}||p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+\hline
+\multicolumn{5}{|c|}{Neural Network Results} \\
+\hline
+Optimizer & Batch Size & Learning Rate & Number of Epochs & Test Accuracy\\
+\hline
+SGD & 128 & 0.01 & 10 & 96.42\%\\
+\hline
+SGD & 128 & 0.001 & 10 & 91.92\%\\
+\hline
+SGD & 512 & 0.01 & 10 & 94.21\%\\
+\hline
+Adam & 128 & 0.01 & 10 & 98.72\%\\
+\hline
+Adam & 128 & 0.001 & 10 & 99.02\%\\
+\hline
+Adam & 512 & 0.01 & 10 & 98.81\%\\
+\hline
+Adadelta & 128 & 0.01 &10 & 93.63\%\\
+\hline
+Adadelta & 128 & 0.001 &10 & 81.55\%\\
+\hline
+Adadelta & 512 & 0.01 &10 & 91.15\%\\
+\hline
+\end{tabular}
+\end{center}
+
+Here is a table of the results we got for the nearest neighbor method :\\\\
+
+\begin{center}
+\begin{tabular}{|p{5cm}||p{3cm}|p{3cm}|p{3cm}|}
+\hline
+\multicolumn{4}{|c|}{Nearest Neighbor Results}\\
+\hline
+Distance & Train set size & Test set size & Test accuracy\\
+\hline
+Euclidean & 200 & 100 & 75\%\\
+\hline
+Dynamic Time Warping & 200 & 100 & 83\%\\
+\hline
+\end{tabular}
+\end{center}
+
+
 \end{document}
