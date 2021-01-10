@@ -8,6 +8,7 @@
 \usepackage{hyperref}
 \usepackage{float}
 \usepackage{tikz}
+\usepackage{xurl}
 
 \tikzstyle{arrow} = [thick,->,>=stealth]
 
@@ -90,7 +91,7 @@ Which is better and by how much, Artificial or Human Intelligence.
 \begin{figure}
 \centering 
 \includegraphics[scale=0.35]{mnist.png}
-\caption{\url {https://medium.com/@ankitbatra2202/mnist-handwritten-digit-recognition-with-pytorch-cce6a33cd1c1}}
+\caption{Mnist Data Set \textcolor{blue}{\href{https://medium.com/@ankitbatra2202/mnist-handwritten-digit-recognition-with-pytorch-cce6a33cd1c1}{Link}}}
 \end{figure}
 \end{frame}
 
@@ -116,7 +117,7 @@ What is train test split and why do we need it?
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{Train-Test-Data-Split.png}
-\caption{\url{https://www.researchgate.net/figure/Train-Test-Data-Split_fig6_325870973}}
+\caption{Train Test Split \textcolor{blue}{\href{https://www.researchgate.net/figure/Train-Test-Data-Split_fig6_325870973}{Link}}}
 \end{figure}
 \end{frame}
 
@@ -181,7 +182,7 @@ So lets explain what is a time series.
 \begin{figure}
 \centering
 \includegraphics[scale=0.4]{Coffee.png}
-\caption{\url{https://www.cs.ucr.edu/~eamonn/time_series_data_2018/}}
+\caption{Time Series of the Coffee Data Set from UCR Archive \textcolor{blue}{\href{https://www.cs.ucr.edu/~eamonn/time_series_data_2018/}{Link}}}
 \end{figure}
 
 \end{frame}
@@ -242,13 +243,13 @@ Why is it called Neural Networks and what is the difference between a Human Brai
 \centering
 \begin{figure}
 \includegraphics[scale=0.55]{artificial_brain.jpeg}
-\caption{ - (a) Artificial Brain \href{https://www.thedailybeast.com/the-science-communitys-fight-over-an-artificial-brain}{Link}}
+\caption{ - (a) Artificial Brain \textcolor{blue}{\href{https://www.thedailybeast.com/the-science-communitys-fight-over-an-artificial-brain}{Link}}}
 \end{figure}
 \column{0.5\textwidth}
 \centering
 \begin{figure}
 \includegraphics[scale=0.14]{humain_brain.jpg}
-\caption{ - (b) Human Brain \href{https://www.pymnts.com/innovation/2019/elon-musk-human-brain-connected-device/}{Link}}
+\caption{ - (b) Human Brain \textcolor{blue}{\href{https://www.pymnts.com/innovation/2019/elon-musk-human-brain-connected-device/}{Link}}}
 \end{figure}
 \end{columns}
 \end{frame}
@@ -581,4 +582,187 @@ overfitting”, JMLR 2014}
 This layer does not have any parameters and it just takes the output of a hidden layer or input layer and transforms its data to a 1 dimensional vector .
 \end{block}
 \end{frame}
+
+\section{Putting It All Together}
+
+\begin{frame}
+\frametitle{Putting It All Together}
+\begin{block}{Implementation}
+For the project we used :
+\begin{itemize}
+\item Python programming language using Visual Studio Code Text Editor
+\item Tkinter Python module to implement the Graphical User Interface (GUI)
+\item Sklearn Python module to get the Euclidean Distances and calculate the score of our evaluations
+\item Tslearn Python module to get the Dynamic Time Warping Distances
+\item Keras Python Module to implement our neural network
+\item Matplotlib Python Module to plot the loss, accuracy and draw all the plots used in this presentation.
+\item Texmaker software to write the presentation and report using Latex language
+\end{itemize}
+
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Putting It All Together}
+\begin{figure}
+\centering
+\includegraphics[scale=0.25]{MY_GUI.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Putting It All Together}
+\begin{block}{Our Neural Network has the following architecture :}
+\begin{itemize}
+\item Layer 1 : Input layer
+\item Layer 2 : Conv2D layer, number of filters is 32 and kernel size is (3,3)
+\item Layer 3 : Conv2D layer, number of filters is 64 and kernel size is (3,3)
+\item Layer 4 : MaxPool2D layer, pool size is (2,2)
+\item Layer 5 : Dropout layer, with a keep probability of 25\%
+\item Layer 6 : Flatten layer
+\item Layer 7 : Dense layer, 128 units with a relu activation function
+\item Layer 8 : Dropout layer, with a keep probability of 50\%
+\item Layer 9 : Output Dense layer, 10 units with a softmax activation function
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section{Results}
+
+\begin{frame}
+\frametitle{Results}
+\begin{center}
+\begin{tabular}{|p{2cm}||p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\hline
+\multicolumn{5}{|c|}{Neural Network Results} \\
+\hline
+Optimizer & Batch Size & Learning Rate & Number of Epochs & Test Accuracy\\
+\hline
+SGD & 128 & 0.01 & 10 & 96.42\%\\
+\hline
+SGD & 128 & 0.001 & 10 & 91.92\%\\
+\hline
+SGD & 512 & 0.01 & 10 & 94.21\%\\
+\hline
+Adam & 128 & 0.01 & 10 & 98.72\%\\
+\hline
+Adam & 128 & 0.001 & 10 & 99.02\%\\
+\hline
+Adam & 512 & 0.01 & 10 & 98.81\%\\
+\hline
+Adadelta & 128 & 0.01 &10 & 93.63\%\\
+\hline
+Adadelta & 128 & 0.001 &10 & 81.55\%\\
+\hline
+Adadelta & 512 & 0.01 &10 & 91.15\%\\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results}
+\begin{center}
+\begin{tabular}{|p{4.3cm}||p{2cm}|p{2cm}|p{2cm}|}
+\hline
+\multicolumn{4}{|c|}{Nearest Neighbor Results}\\
+\hline
+Distance & Train set size & Test set size & Test accuracy\\
+\hline
+Euclidean & 200 & 100 & 75\%\\
+\hline
+Dynamic Time Warping & 200 & 100 & 83\%\\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+
+\section{Discussion}
+
+\begin{frame}
+\frametitle{Discussion}
+\begin{block}{Observations}
+\begin{itemize}
+\item DTW is better than ED but slower
+\item There isn't one best way using the neural network method
+\item The best optimizer for our data and network architecture is Adam with a learning rate of 0.001, batch size of 128 and number of epochs of 10
+\end{itemize}
+\end{block}
+\begin{alertblock}{Note}
+Of course there can be better ways for this architecture and data set.
+\end{alertblock}
+\end{frame}
+
+\section{Conclusion}
+\begin{frame}
+\frametitle{Conclusion}
+\begin{itemize}
+\item Neural networks are the best way to build AI machines (for now)
+\item Big number of hyper parameters so it takes time to find the best way
+\item The hardware is very important for the time of training
+\item Neural networks can learn just like humans do
+\item Always find different results and compare 
+\item Can we trust AI ?
+\end{itemize}
+\end{frame}
+
+\section{References}
+
+\begin{frame}
+\frametitle{References}
+\begin{itemize}
+
+\item \textcolor{blue}{\url{https://becominghuman.ai/introduction-to-artificial-intelligence-5fba0148ec99}}
+\item \textcolor{blue}{\url{https://www.overleaf.com/learn/latex}}
+\item \textcolor{blue}{\url{https://medium.com/@urvashilluniya/why-data-normalization-is-necessary-for-machine-learning-models-681b65a05029}}
+\item \textcolor{blue}{\url{https://towardsdatascience.com/understand-data-normalization-in-machine-learning-8ff3062101f0}}
+\item \textcolor{blue}{\url{https://medium.com/datadriveninvestor/k-nearest-neighbors-knn-7b4bd0128da7}}
+\item \textcolor{blue}{\url{https://medium.com/@srishtisawla/k-nearest-neighbors-f77f6ee6b7f5}}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{References}
+\begin{itemize}
+\item \textcolor{blue}{\url{https://medium.com/datadriveninvestor/dynamic-time-warping-dtw-d51d1a1e4afc}}
+\item \textcolor{blue}{\url{https://towardsdatascience.com/dynamic-time-warping-3933f25fcdd}}
+\item \textcolor{blue}{\url{https://medium.com/@purnasaigudikandula/a-beginner-intro-to-neural-networks-543267bda3c8}}
+\item \textcolor{blue}{\url{https://mathanrajsharma.medium.com/softmax-activation-function-e582ea53ada7}}
+\item \textcolor{blue}{\url{https://medium.com/fintechexplained/neural-network-layers-75e48d71f392}}
+\item \textcolor{blue}{\url{https://gombru.github.io/2018/05/23/cross_entropy_loss/}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{References}
+\begin{itemize}
+\item \textcolor{blue}{\url{https://medium.com/datathings/dense-layers-explained-in-a-simple-way-62fe1db0ed75}}
+\item \textcolor{blue}{\url{https://medium.com/@brightonnkomo/convolutional-neural-networks-part-4-the-pooling-and-fully-connected-layer-394ec01fb00d}}
+\item \textcolor{blue}{\url{https://xzz201920.medium.com/conv1d-conv2d-and-conv3d-8a59182c4d6}}
+\item \textcolor{blue}{\url{https://medium.com/@amarbudhiraja/https-medium-com-amarbudhiraja-learning-less-to-learn-better-dropout-in-deep-machine-learning-74334da4bfc5}}
+\item \textcolor{blue}{\url{https://towardsdatascience.com/the-most-intuitive-and-easiest-guide-for-convolutional-neural-network-3607be47480}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{References}
+\begin{itemize}
+\item \textcolor{blue}{\url{https://keras.io/}}
+\item \textcolor{blue}{\url{https://scikit-learn.org/stable/}}
+\item \textcolor{blue}{\url{https://tslearn.readthedocs.io/en/stable/}}
+\item \textcolor{blue}{\url{https://numpy.org/}}
+\item \textcolor{blue}{\url{https://matplotlib.org/}}
+\item \textcolor{blue}{\url{https://docs.python.org/3/library/tkinter.html}}
+\item \textcolor{blue}{\url{https://docs.python.org/3/}}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{END}
+\begin{center}
+\Huge THANK YOU FOR YOUR TIME
+\end{center}
+\end{frame}
+
 \end{document}

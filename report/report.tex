@@ -12,6 +12,8 @@
 \usepackage{wrapfig}
 \usepackage[hidelinks]{hyperref}
 \usepackage{array}
+\usepackage{xcolor}
+\usepackage{xurl}
 
 \usepackage[a4paper, total={6.5in, 8in}]{geometry}
 \font\myfont=cmr12 at 30pt
@@ -57,7 +59,7 @@ We ask ourselves a simple question, how come AI hasn't taken over the world in e
 \caption{Examples of the mnist digit recognition data set}
 \end{figure}
 \begin{center}
-\small\url {https://medium.com/@ankitbatra2202/mnist-handwritten-digit-recognition-with-pytorch-cce6a33cd1c1}
+\textcolor{blue}{\small\url {https://medium.com/@ankitbatra2202/mnist-handwritten-digit-recognition-with-pytorch-cce6a33cd1c1}}
 \end{center}
 \section{Data normalization :}
 \large Data normalization is considered a very essential part of machine learning and deep learning, why is that? Before explaining why lets start by the definition of data normalization, normalizing a data set is to change in the numeric values of each attribute in the data set to a target scale. Note that not every data set requires a normalization , it is only required when the given features in a data set have different range of values, for example if we have a data set with two features : age (0-100) and income per month (0-20,000\$), we can see that the range of values in the income attribute is way bigger than the range of values in the age attribute so if we use an AI model without normalization it would take it a lot of time to learn from these values because they are too big like when calculating gradients (will discuss more in the next sections). Same thing applies to our digit recognition model because every pixel is an attribute and the range of values of each pixel is 0-255 so we may have a black pixel (0) and a white pixel (255) (remember we are dealing with a gray scale image so we have only 1 channel). There are many ways to normalize a data set, lets discuss about some of them:
@@ -117,7 +119,7 @@ A time series is sequence of data points equally spaced in time, for example if 
 \caption{Example of a Time Series, Coffee data set}
 \end{figure}
 \begin{center}
-\small\url{https://www.cs.ucr.edu/~eamonn/time_series_data_2018/}
+\textcolor{blue}{\small\url{https://www.cs.ucr.edu/~eamonn/time_series_data_2018/}}
 \end{center}
 So what is DTW? It is a method to find the optimal similarity between two time series, so eventually its a method to calculate the distance between two time series.\\
 To explain more about DTW and how it works, lets consider these two time series:
@@ -360,13 +362,15 @@ A dropout layer has only one parameter which is a probability $ p $ called keep 
 \caption{Visualization of a network with dropout.}
 \end{figure}
 \begin{center}
-\small rivastava, Nitish, et al. ”Dropout: a simple way to prevent neural networks from
-overfitting”, JMLR 2014
+\textcolor{blue}{\small rivastava, Nitish, et al. ”Dropout: a simple way to prevent neural networks from
+overfitting”, JMLR 2014}
 \end{center}
 \paragraph{6.4.3.5 Flatten Layer :}
 This layer does not have any parameters and it just takes the output of a hidden layer or input layer and transforms its data to a 1 dimensional vector.
 
 \section{Putting It All Together :}
+
+You can find the code of our project \textcolor{blue}{\href{https://github.com/hadifawaz1999/Mini_Project}{here}.}
 
 Our project is a simple Graphical User Interface (GUI) created in python using the Tkinter module where the user can choose any of the 3 methods we talked about (NN-ED, NN-DTW, ANN) to test the model's classification. For all of the 3 methods we talked about we gathered some results, for the nearest neighbor algorithm (using ED and DTW) we did only one trial with only 200 samples of the train set and 100 samples of the test set because nearest neighbor with ED is a O(n) algorithm and DTW is a O(n*m) algorithm so with 60,000 train samples and 1000 test samples it would take a lot of time for the algorithm to finish even with the optimized functions that we used from Tslearn and Sklearn modules that we used to evaluate the algorithms. For the neural networks we implemented our model using the Keras module with 9 different approaches so we can compare the results and choose the best model, because the number of hyper parameters that a neural network has is very large so we had 3 different optimizers : SGD, Adam and Adadelta, 2 different learning rates : 0.01 and 0.001 and 2 different batch sizes : 128 and 512 but with a fixed number of epochs equal to 10.\\\\
 Note : For the neural network method we used the whole data set.\\
@@ -430,5 +434,47 @@ Dynamic Time Warping & 200 & 100 & 83\%\\
 \end{tabular}
 \end{center}
 
+\section{Discussion}
+
+We can observe from our results using Nearest Neighbor that this method is not very efficient though of course using DTW is way better than using ED because DTW finds the optimal alignment between the two samples but its problem is the time complexity, if the samples are of length $ n $ and $ m $ than the algorithm would have a time complexity of $ O( n*m ) $.\\\\\\
+On the other hand we can see that the best way was to use neural networks, especially when using convolution layers because it can detects very specific patterns in the image. Although that using the optimizer Adam gave the best test accuracy, we can't say that its the best optimizer there is for all the neural networks we can build even the learning rate and the batch size because it always depends on the data set and on the architecture of a neural network.\\
+But we can observe from our results that for that specific architecture that we built and the given data set, the best way is to use Adam optimizer with a learning rate of 0.001, batch size equal to 128 and repeat the work 10 times (number of epochs) but that doesn't mean that there isn't even better ways because in the end this is a research based project that we worked on.
+
+\section{Conclusion}
+
+After all we explained and observed in our little research we can say at the end that the best way to create an Artificial Intelligence machine is to use neural networks (for now at least), but more importantly, when dealing with neural networks we always have what we called before hyper parameters, the number of these parameters can be very large because we have to choose what are the number of layers and there types, what is the activation function for each layer and the parameters of each layer, the learning rate and batch size etc...\\
+But eventually the neural network could learn and teach itself how to classify these images just like a human can do, the teaching phase was way slower than how humans can learn but it classified 10,000 images in seconds which takes a human a lot longer than that obviously.\\\\
+So no matter what our data set is and what architecture we build, we always need to make trials to see and compare results to eventually choose the best method and of course learn why is this better than before. But the community asks always the same question : Can we trust AI ? This question opens a new kind of research called XAI : Explainable Artificial Intelligence, because we need to make the community to believe that AI can be trustworthy because in the end it is what would take over everything in the future.
+
+\section{References :}
+
+\begin{itemize}
+
+\item \textcolor{blue}{\url{https://becominghuman.ai/introduction-to-artificial-intelligence-5fba0148ec99}}
+\item \textcolor{blue}{\url{https://www.overleaf.com/learn/latex}}
+\item \textcolor{blue}{\url{https://medium.com/@urvashilluniya/why-data-normalization-is-necessary-for-machine-learning-models-681b65a05029}}
+\item \textcolor{blue}{\url{https://towardsdatascience.com/understand-data-normalization-in-machine-learning-8ff3062101f0}}
+\item \textcolor{blue}{\url{https://medium.com/datadriveninvestor/k-nearest-neighbors-knn-7b4bd0128da7}}
+\item \textcolor{blue}{\url{https://medium.com/@srishtisawla/k-nearest-neighbors-f77f6ee6b7f5}}
+\item \textcolor{blue}{\url{https://medium.com/datadriveninvestor/dynamic-time-warping-dtw-d51d1a1e4afc}}
+\item \textcolor{blue}{\url{https://towardsdatascience.com/dynamic-time-warping-3933f25fcdd}}
+\item \textcolor{blue}{\url{https://medium.com/@purnasaigudikandula/a-beginner-intro-to-neural-networks-543267bda3c8}}
+\item \textcolor{blue}{\url{https://mathanrajsharma.medium.com/softmax-activation-function-e582ea53ada7}}
+\item \textcolor{blue}{\url{https://medium.com/fintechexplained/neural-network-layers-75e48d71f392}}
+\item \textcolor{blue}{\url{https://gombru.github.io/2018/05/23/cross_entropy_loss/}}
+\item \textcolor{blue}{\url{https://medium.com/datathings/dense-layers-explained-in-a-simple-way-62fe1db0ed75}}
+\item \textcolor{blue}{\url{https://medium.com/@brightonnkomo/convolutional-neural-networks-part-4-the-pooling-and-fully-connected-layer-394ec01fb00d}}
+\item \textcolor{blue}{\url{https://xzz201920.medium.com/conv1d-conv2d-and-conv3d-8a59182c4d6}}
+\item \textcolor{blue}{\url{https://medium.com/@amarbudhiraja/https-medium-com-amarbudhiraja-learning-less-to-learn-better-dropout-in-deep-machine-learning-74334da4bfc5}}
+\item \textcolor{blue}{\url{https://towardsdatascience.com/the-most-intuitive-and-easiest-guide-for-convolutional-neural-network-3607be47480}}
+\item \textcolor{blue}{\url{https://keras.io/}}
+\item \textcolor{blue}{\url{https://scikit-learn.org/stable/}}
+\item \textcolor{blue}{\url{https://tslearn.readthedocs.io/en/stable/}}
+\item \textcolor{blue}{\url{https://numpy.org/}}
+\item \textcolor{blue}{\url{https://matplotlib.org/}}
+\item \textcolor{blue}{\url{https://docs.python.org/3/library/tkinter.html}}
+\item \textcolor{blue}{\url{https://docs.python.org/3/}}
+
+\end{itemize}
 
 \end{document}
