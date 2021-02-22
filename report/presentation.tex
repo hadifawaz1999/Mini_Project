@@ -19,7 +19,7 @@
 \subtitle{Min Project prepared for Dr. Youssef HARKOUS}
 \author{Ali El Hadi ISMAIL FAWAZ}
 \institute[LUFE]
-{Lebanese University \and Faculty of Engineering branch III - Hadath \and Department of Electrical and Electronics Engineering}
+{Lebanese University \and Faculty of Engineering branch III - Hadath \and Department of Electrical and Telecommunication Engineering}
 \date[\today]
 {4th Year - Semester 7 - Fall 2020/2021 - \today}
 \logo{\includegraphics[scale=0.1]{ulfg_logo.png}}
@@ -39,6 +39,13 @@
 \begin{frame}
 \frametitle{Table of Contents}
 \tableofcontents
+\end{frame}
+
+\section*{Acknowledgments}
+\begin{frame}
+\frametitle{Acknowledgments}
+First and foremost, we would like to thank the dean, the faculty director, the head of the electrical and
+telecommunication department and of course Dr. Y. Harkous for whom we are presenting our work.
 \end{frame}
 
 \section{Introduction}
@@ -141,7 +148,7 @@ K-NN is a basic algorithm to solve classification problems.
 \frametitle{Nearest Neighbor}
 \begin{example}
 
-We are classifying an instance $ x $ with $ K = 3 $ based on a data set $ \{y_0,y_1,y_2,...,y_n\} $ and we found that $ y_0, y_1 $ and $ y_2 $ are the 2 nearest neighbors to $ x $. If $ y_0 $ and $ y_2 $ are classified as $ c_0 $ and $ y_1 $ as $ c_1 $, $ x  $ would be classified then as $ c_0 $ as it is the most dense class in the nearest neighbors of $ x $.
+We are classifying an instance $ x $ with $ K = 3 $ based on a data set $ \{y_0,y_1,y_2,...,y_n\} $ and we found that $ y_0, y_1 $ and $ y_2 $ are the 3 nearest neighbors of $ x $. If $ y_0 $ and $ y_2 $ are classified as $ c_0 $ and $ y_1 $ as $ c_1 $, $ x  $ would be classified then as $ c_0 $ as it is the most dense class in the nearest neighbors of $ x $.
 
 \end{example}
 \begin{alertblock}{Note :}
@@ -393,7 +400,7 @@ Now if each value of the input vector is a vector it self of m values (input is 
 \begin{frame}
 \frametitle{Neural Networks - Gradient Descent}
 \begin{block}{In a more general way}
-consider having an input matrix $ X $ of $ n $ instances with each instance being a vector of $ m $ values (matrix $ X $ size $ n*m $), and $ u $ neurons in one layer, the output of that layer would be a vector of length $ u $, $ w $ would be a matrix of size $ (n*u) $ and $ b $ a vector of $ u $ values. To calculate the output vector of this layer :\\
+consider having an input matrix $ X $ of $ n $ instances with each instance being a vector of $ m $ values (matrix $ X $ size $ n*m $), and $ u $ neurons in one layer, the output of that layer would be a vector of length $ u $, $ w $ would be a matrix of size $ (m*u) $ and $ b $ a vector of $ u $ values. To calculate the output vector of this layer :\\
 \begin{center}
 $ \vec{y^{\prime}} = w^{T}*\vec{x} + \vec{b} $
 \end{center}
@@ -537,7 +544,7 @@ $  Filter jumping 2 steps vertically and horizontally.
 \frametitle{Neural Networks - Layers - 2D Convolution Layer}
 Here the filter jumps 1 step at the time regardless of the its size.\\
 \begin{example}
-Lets consider having the same matrix we used in the previous section about max pooling layer, applying this matrix as $ (2,2) $ filter :\\
+Lets consider having the same matrix we used in the previous section about max pooling layer, using this matrix as a $ (2,2) $ filter :\\
 $F = 
 \begin{pmatrix}
 1 & -1\\
@@ -615,8 +622,8 @@ For the project we used :
 \begin{block}{Our Neural Network has the following architecture :}
 \begin{itemize}
 \item Layer 1 : Input layer
-\item Layer 2 : Conv2D layer, number of filters is 32 and kernel size is (3,3)
-\item Layer 3 : Conv2D layer, number of filters is 64 and kernel size is (3,3)
+\item Layer 2 : Conv2D layer, number of filters is 32 and kernel size is (3,3), relu activation function
+\item Layer 3 : Conv2D layer, number of filters is 64 and kernel size is (3,3), relu activation function
 \item Layer 4 : MaxPool2D layer, pool size is (2,2)
 \item Layer 5 : Dropout layer, with a keep probability of 25\%
 \item Layer 6 : Flatten layer

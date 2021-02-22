@@ -41,13 +41,18 @@ BRANCH III\\\\
 \newpage
 \listoffigures
 \newpage
+\begin{center}
+\section*{Acknowledgments}
+First and foremost, we would like to thank the dean, the faculty director, the head of the electrical and telecommunication department and of course Dr. Y. Harkous for whom we are presenting our work.
+\end{center}
+
 \begin{abstract}
 This paper presents the different ways of classifying the mnist digit recognition data set where we will compare the results of all the models used in this project.
 \end{abstract}
 
 \section{Introduction :}
 \large “ The science and engineering of making intelligent machines, especially intelligent computer programs ”. -John McCarthy-\\
-Humans are smart, but how does the human brain function, what happens when we try to learn,solve,think etc... Scientists created an approach called Artificial Intelligence (AI) to make a computer or a machine to behave just as humans, we can't know for sure if AI's methods are the same as the human mind's but we can know for sure that AI models these days can think just as humans do, they can think, self learn, solve problems even humans couldn't solve them before or just not as fast as AI models. The aim of AI is to improve those skills that a human brain has. But unlike humans, AI needs algorithms and very specific guidance to achieve its goals because at the end of the day, it's still a machine.\\
+Humans are smart, but how does the human brain function, what happens when we try to learn,solve,think etc... Scientists created an approach called Artificial Intelligence (AI) to make a computer or a machine to behave just as humans, we can't know for sure if AI's methods are the same as the human mind's but we can know for sure that AI models these days can act like humans do, they can think, self learn, solve problems even humans couldn't solve them before or just not as fast as AI models. The aim of AI is to improve those skills that a human brain has. But unlike humans, AI needs algorithms and very specific guidance to achieve its goals because at the end of the day, it's still a machine.\\
 We ask ourselves a simple question, how come AI hasn't taken over the world in every domain if it is that powerful? To answer this question we will study many methods in this project. Several techniques have been developed over the years to improve the results of AI models starting from simple machine learning algorithms to end up where we are today using deep learning techniques or what we call now neural networks, the name neural network is based on the idea of creating an artificial brain with artificial neurons. In this project we will discuss the simplest machine learning algorithm called Nearest Neighbor, small neural networks and large neural networks and compare there performance on image classification.
 
 \section{Materials used :}
@@ -93,7 +98,7 @@ $ \vec{x^{\prime}} = \dfrac{\vec{x}}{||\vec{x}||} $
 In every AI model we need to split our data set into two new sets, first being the training set and second being the testing set. The AI model needs to self learn on the training self where it tries to learn the patterns of the data or tries to classify the instances etc... But while the model is training it being told by how much it is not learning correctly until it achieves its goal and have learned everything (will explain more in next sections). So why use the test set then? After our model have learned the data and knows what its work is, we need to evaluate it just like an exam for students, we teach students all semester and tell them what is right and wrong and correct there mistakes until we examine them in a test and evaluate there performance along the semester, same thing for AI models we need to evaluate its performance to see if it was learning well while the training was taking place.
 
 \section{Nearest Neighbor :}
-\large It is actually called K-Nearest-Neighbor (K-NN for short), where K being the number of the nearest neighbors of a vector. K-NN is one of the most basic algorithms used in classification problems, the idea behind it is to find the K nearest neighbors of a given instance from a whole data set so that this instance would belong to the class that has the most neighbors, for example if i am classifying an instance $ x $ with K=3 and we found those 3 nearest neighbors $ y_1,y_2,y_3 $, if $ y_1 $ and $ y_3 $ belong to class $ c_0 $ and $ y_3 $ belongs to class $ c_1 $ then $ x $ would be classified just like $ y_1 $ and $ y_2 $ (class $ c_0 $). In our project we considered K=1 so we only have to find one nearest neighbor and $ x $ would be classified like it. But how do we find the nearest neighbor? Based on what? That is where the math starts, to find the nearest neighbor we just have to calculate the distance of the vector $ x $ to all the instances in the data set and $ x $'s nearest neighbor would be the instance with the smallest distance from it, here are two methods to calculate the distance between two vectors that we used in this project :\\
+\large It is actually called K-Nearest-Neighbor (K-NN for short), where K being the number of the nearest neighbors of a vector. K-NN is one of the most basic algorithms used in classification problems, the idea behind it is to find the K nearest neighbors of a given instance from a whole data set so that this instance would belong to the class that has the most neighbors, for example if i am classifying an instance $ x $ with K=3 and we found those 3 nearest neighbors $ y_1,y_2,y_3 $, if $ y_1 $ and $ y_3 $ belong to class $ c_0 $ and $ y_2 $ belongs to class $ c_1 $ then $ x $ would be classified just like $ y_1 $ and $ y_3 $ (class $ c_0 $). In our project we considered K=1 so we only have to find one nearest neighbor and $ x $ would be classified like it. But how do we find the nearest neighbor? Based on what? That is where the math starts, to find the nearest neighbor we just have to calculate the distance of the vector $ x $ to all the instances in the data set and $ x $'s nearest neighbor would be the instance with the smallest distance from it, here are two methods to calculate the distance between two vectors that we used in this project :\\
 
 \subsection{The Euclidean Distance (ED) :}
 ED is the simple straight line distance between two points in a two dimensional plane (same applied in a N dimensional space) :\\
@@ -168,7 +173,7 @@ An artificial neuron can be defined as an input output system, where $ x $ is th
 \end{tikzpicture}
 \caption{Artificial Neuron.}
 \end{figure}
-Where $ w $ is called the weight and $ b $ the bias. The idea is that we have an input $ x $ and an output $ y $, we want to find the linear relation between $ x $ and $ y $ so eventually find the correct $ w $ and $ b $. How to do this? ANN's most important concepts are forward and backward propagation, in the forward propagation phase our goal is to calculate the output $ y^{\prime} = w*x ++ b $, backward propagation consists calculate our loss between the real target $ y $ and the predicted target $ y^{\prime} $ and adjust the weight $ w $ and bias$ b $ and get closer to the correct values. How to adjust $ w $ and $ b $ and how to know when to stop? Our goal in ANN's is to minimize the loss as between $ y^{\prime} $ and $ y $ as much as possible and each time we calculate the loss (which should be decreasing from what we just explained) we adjust the weight and bias using a specific optimizer. Many optimizers are used these days, we are going to talk about a simple one called Gradient descent :
+Where $ w $ is called the weight and $ b $ the bias. The idea is that we have an input $ x $ and an output $ y $, we want to find the linear relation between $ x $ and $ y $ so eventually find the correct $ w $ and $ b $. How to do this? ANN's most important concepts are forward and backward propagation, in the forward propagation phase our goal is to calculate the output $ y^{\prime} = w*x ++ b $, backward propagation consists on calculating the loss between the real target $ y $ and the predicted target $ y^{\prime} $ and adjust the weight $ w $ and bias $ b $ and get closer to the correct values. How to adjust $ w $ and $ b $ and how to know when to stop? Our goal in ANN's is to minimize the loss as between $ y^{\prime} $ and $ y $ as much as possible and each time we calculate the loss (which should be decreasing from what we just explained) we adjust the weight and bias using a specific optimizer. Many optimizers are used these days, we are going to talk about a simple one called Gradient descent :
 \subsection{Gradient Descent Optimizer :}
 We explained before that after we calculate the loss we have to adjust the weight $ w $ and bias $ b $, lets consider that we calculated the loss $ L(y,y^{\prime}), y^{\prime} $ is a function of $ w $ and $ b $ and y is fixed to a given value that means $ L(y,y^{\prime}) $ is actually a function of $ w $ and $ b, L(w,b) $. So we adjust the weight and bias in this manner :\\
 \begin{center}
@@ -201,7 +206,7 @@ At epoch 2 :
 \begin{center}
 $ y^{\prime} = w*x + b = 1*1 + 1 = 1 + 1 = 2 $ \hspace{5mm} and \hspace{5mm} $ y = 2 $\\
 So \hspace{5mm} $ L(w,b) = L(y,y^{\prime}) = |y^{\prime} - y| = |2 - 2| = 0 $\\
-And with a loss being equal to zero, out work here is done and the correct values are $ w = 1 $ and $ b = 1 $ so we get the linear relation between input and output : $ y = w*x + b = x + 1 $
+And with a loss being equal to zero, our work here is done and the correct values are $ w = 1 $ and $ b = 1 $ so we get the linear relation between input and output : $ y = w*x + b = x + 1 $
 \begin{tikzpicture}
 \draw (0,0) -- (10,0);
 \end{tikzpicture}
@@ -230,7 +235,7 @@ Lets consider $ m = 4 $ and that we are forward propagating the row $ i $ of the
 \end{figure}
 
 
-In a more general way, consider having an input matrix $ X $ of $ n $ instances with each instance being a vector of $ m $ values (matrix $ X $ size $ n*m $), and $ u $ neurons in one layer, the output of that layer would be a vector of length $ u $, $ w $ would be a matrix of size $ (n*u) $ and $ b $ a vector of $ u $ values. To calculate the output vector of this layer :\\
+In a more general way, consider having an input matrix $ X $ of $ n $ instances with each instance being a vector of $ m $ values (matrix $ X $ size $ n*m $), and $ u $ neurons in one layer, the output of that layer would be a vector of length $ u $, $ w $ would be a matrix of size $ (m*u) $ and $ b $ a vector of $ u $ values. To calculate the output vector of this layer :\\
 \begin{center}
 $ \vec{y^{\prime}} = w^{T}*\vec{x} + \vec{b} $
 \end{center}
@@ -298,14 +303,14 @@ Every neural network must have an input layer, its job is to receive the input d
 \subsubsection{Output Layer :}
 Also every neural network must have an output layer, it is responsible for producing the final results of the network like the layer with the softmax activation function explained before.
 \subsubsection{Hidden Layer :}
-Hidden layers resides in between the input and output layers, they are not visible to the external system, there could be 0 or more hidden layers in an ANN. There is a lot of types of hidden layers so we are going to explain the ones we used in our project :
+Hidden layers reside in between the input and output layers, they are not visible to the external system, there could be 0 or more hidden layers in an ANN. There is a lot of types of hidden layers so we are going to explain the ones we used in our project :
 \paragraph{6.4.3.1 Dense Layer :}
 The dense layer was explained before, it consists of having $ u $ neurons and one activation function $ f $ and its output (lets call it $ y $) is calculated in the following way :\\
 \begin{center}
 $ \vec{y} = f(w^{T}*\vec{x} + \vec{b}) $
 \end{center}
 The number of weights in the matrix $ w $ is $ n*u $ where $ n $ is the length of the input to this layer and the number of biases used is $ u $.\\
-So in total $ n*u + u $ parameters in a dense layer.
+So in total $ n*u + u $ parameters are used in a dense layer.
 \paragraph{6.4.3.2 Max Pooling 2D :}
 The goal of a max pooling layer is to just reduce the size of the input, lets say you have a $ 4x4 $ matrix :\\\\
 $D = 
@@ -326,7 +331,7 @@ $\\\\
 As you can see the size has been divided by 2 on width and height, because we applied a $ (2,2) $ filter where each of the $ 4 (2,2) $ sub matrix is replaced by the maximum of its values, so the filter would jump 2 steps vertically and horizontally.
 \paragraph{6.4.3.3 2D Convolution Layer (Conv2D) :}
 Same way we used a 2 dimensional filter in the max pooling layer we are going to use one here, but the difference is that this time the filter jumps 1 step (regardless of its size) vertically and horizontally. To understand how the filter works lets see an example :\\
-Lets consider having the same matrix we used in the previous section about max pooling layer, applying this matrix as $ (2,2) $ filter :\\\\
+Lets consider having the same matrix we used in the previous section about max pooling layer, we will use this matrix as a $ (2,2) $ filter :\\\\
 $F = 
 \begin{pmatrix}
 1 & -1\\
@@ -377,8 +382,8 @@ Note : For the neural network method we used the whole data set.\\
 Our Neural Network has the following architecture :\\
 \begin{itemize}
 \item Layer 1 : Input layer
-\item Layer 2 : Conv2D layer, number of filters is 32 and kernel size is (3,3)
-\item Layer 3 : Conv2D layer, number of filters is 64 and kernel size is (3,3)
+\item Layer 2 : Conv2D layer, number of filters is 32 and kernel size is (3,3), relu activation function
+\item Layer 3 : Conv2D layer, number of filters is 64 and kernel size is (3,3), relu activation function
 \item Layer 4 : MaxPool2D layer, pool size is (2,2)
 \item Layer 5 : Dropout layer, with a keep probability of 25\%
 \item Layer 6 : Flatten layer
